@@ -4,21 +4,25 @@
   with_items: 
       - libapache2-mod-php5
       
-      
-- name: nginx php config
+- name: apache php config
   template: src=apache/php.conf dest=/etc/apache2/sites-available/php.conf
   notify: reload apache
   tags:
       - config
 
 - name: Remove 000-default
-  file: dest=/etc/apache2/sites-enabled/000-default
+  file: dest=/etc/apache2/sites-enabled/000-default.conf
         state=absent
-  when: php_apache_remove_default_conf == True
+  when: php_apache_remove_default_conf
   notify: reload apache
   
-- name: enable nginx rd config
+- name: enable apache php config
   file: state=link src=../sites-available/php.conf dest=/etc/apache2/sites-enabled/php.conf
   notify: reload apache
+  when: php_apache_no_conf == False
   tags:
       - config
+
+- name: ensure role conf is disabled
+  file: dest=/etc/apache2/sites-enabled/php.conf state=absent
+  when: php_apache_no_conf

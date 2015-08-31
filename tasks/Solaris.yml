@@ -1,4 +1,0 @@
----
-- name: install dependencies
-  pkgin: name={{ item }} state=present
-  with_items:

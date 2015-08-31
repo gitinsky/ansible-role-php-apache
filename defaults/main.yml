@@ -1,2 +1,3 @@
 ---
 php_apache_remove_default_conf: True
+php_apache_no_conf: yes
