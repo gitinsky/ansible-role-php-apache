@@ -3,6 +3,50 @@
   service: name=apache2 state=reloaded
   notify: apachectl configtest
 
+- name: apache reload
+  service: name=apache2 state=reloaded
+  notify: apachectl configtest
+
+- name: reload apache2
+  service: name=apache2 state=reloaded
+  notify: apachectl configtest
+
+- name: apache2 reload
+  service: name=apache2 state=reloaded
+  notify: apachectl configtest
+
+
+
+
+- name: restart apache
+  command: apachectl configtest
+  notify: apache unsafe restart
+  changed_when: false
+
+- name: apache restart
+  command: apachectl configtest
+  notify: apache unsafe restart
+  changed_when: false
+
+- name: restart apache2
+  command: apachectl configtest
+  notify: apache unsafe restart
+  changed_when: false
+
+- name: apache2 restart
+  command: apachectl configtest
+  notify: apache unsafe restart
+  changed_when: false
+
+
+
+
+- name: apache unsafe restart
+  service: name=apache2 state=restarted
+
+
+
+
 - name: apachectl configtest
   command: apachectl configtest
   changed_when: false
