@@ -10,6 +10,12 @@
   tags:
       - config
 
+- name: apache ports config
+  template: src=apache/ports.conf dest=/etc/apache2/ports.conf
+  notify: restart apache
+  tags:
+      - config
+
 - name: Remove 000-default
   file: dest=/etc/apache2/sites-enabled/000-default.conf
         state=absent
