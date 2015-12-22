@@ -3,6 +3,7 @@
   apt: name={{ item }} state=present update_cache=yes
   with_items: 
       - libapache2-mod-php5
+      - php5-curl
       
 - name: apache php config
   template: src=apache/php.conf dest=/etc/apache2/sites-available/php.conf
